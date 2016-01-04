@@ -1,11 +1,14 @@
+<div class="section-header job-background">
+	<h1>Available Jobs</h1>
+	<%= link_to "Post a job", new_job_path, :class =>"btn btn-large btn-custom full-width-mobile " %>
+</div>
 
-<div class="row padt-10">
-	<%= link_to "Post a job", new_job_path, :class =>"btn btn-primary pull-right" %>
+<div class="row well" id="job">
 	<div class="col-md-12">
+		<!--
 		<h1>Available Jobs</h1>
 		<h3>Classification:</h3>
-		<%= form_tag({controller: "jobs", action: "index"}, method: "get", class: "form-horizontal") do%>
-
+		
 		<div class="btn-group hidden-xs" data-toggle="buttons">
   		<% @classifications.each do |classification| %>
 		<label class="btn btn-primary">
@@ -14,20 +17,36 @@
   		</label>
 		<% end %>
 		</div>
-		<div class="visible-xs">
-			<%= collection_select :classification_ids, "", Classification.all, :id, :name, :prompt => "Select a classification" %>
+		-->
+		 <%= form_tag({controller: "jobs", action: "index"}, method: "get", style: "padding:0px 17px", class: "col-md-12 no-padding-mobile no-padding-tablet form-horizontal") do%>
+			<div class="wrapper-with-title container">
+				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#filterContent" aria-expanded="true" aria-controls="filterContent">
+					<div class="panel-heading wrapper-header" role="tab" id="headingOne">
+						<h4 class="panel-title">
+							Filter
+							<i class="fa fa-chevron-down"></i>
+						</h4>	
+					</div>
+				</a>
+			
+				<div id="filterContent" class="panel-collapse col-sm-12 collapse in" role="tabpanel">
+					<div class="wrapper-container container">
+						<label class="col-sm-6 col-xs-12 control-label">Classification</label>
+						<i class="fa fa-caret-down"></i>
+						<%= collection_select :classification_ids, "", Classification.all, :id, :name, {:prompt => "Select a classification"}, {:class => "col-xs-12 form-control"} %>
+						<div class="form-group col-xs-12">
+							<div class="no-padding-side col-xs-12">
+								<input type="submit" value"filter" class="btn btn-large btn-custom">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		<%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+		<div class="col-md-12 no-padding-mobile">
+			<%= render @jobs %>
 		</div>
-		<br/><br/>
-			<div>
-		     <input type="submit" value"filter" class=" col-sm-1 btn btn-success">
-		 </div>	
-		 <br/>
-
-		 <% end %>
-		<br/>
-<%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
-		<br/>
-		<%= render @jobs %>
 	</div>
 </div>
 <div class="row well">

@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  resources :courses
+
   resources :foods
 
   resources :classifications

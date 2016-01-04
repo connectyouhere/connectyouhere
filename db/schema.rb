@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018042618) do
+ActiveRecord::Schema.define(version: 20151218103039) do
 
   create_table "accomodations", force: true do |t|
     t.string   "roomtype"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20141018042618) do
 
   create_table "classifications", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "fee"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

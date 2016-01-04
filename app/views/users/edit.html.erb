@@ -1,46 +1,96 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
 
-<div class="row">
-  <%= form_for(@user, :html => {:class => "form-horizontal"}) do |f| %>
+<div class="row header-bg-image editing-form">
+  <%= form_for(@user, :html => {:class => "form-horizontal margin-top-30"}) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
+  <h1>Update your profile</h1>
+  <hr>
   <div class="form-group">
-    <%= f.label :name, :class =>"col-sm-2 control-label" %>
-    <div class="col-sm-6">
-      <%= f.text_field :name,:required=>"required", :class =>"form-control"%>
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <div class="col-sm-6 col-xs-12">
+        <%= gravatar_for @user %>
+        <a href="http://gravatar.com/emails">change</a>
+      </div>
+      <div class="col-sm-3 col-xs-1"></div>
+    </div>
+  </div>
+  
+  <!-- Name -->
+  <div class="form-group">
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <%= f.label :name, :class =>"col-sm-6 col-xs-12 control-label" %>
+      <div class="col-sm-3 col-xs-1"></div>
+    </div>
+    
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <div class="col-sm-6 col-xs-12">
+        <%= f.text_field :name,:required=>"required", :class =>"form-control"%>
+      </div>
+      <div class="col-sm-3 col-xs-1"></div>
     </div>
   </div>
 
+  <!-- E-mail -->
   <div class="form-group">
-    <%= f.label :email, :class =>"col-sm-2 control-label" %>
-    <div class="col-sm-6">
-      <%= f.text_field :email,:required=>"required", :class =>"form-control"%>
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <%= f.label :email, :class =>"col-sm-6 col-xs-12 control-label" %>
+      <div class="col-sm-3 col-xs-1"></div>
+    </div>
+    
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <div class="col-sm-6 col-xs-12">
+        <%= f.text_field :email,:required=>"required", :class =>"form-control"%>
+      </div>
+      <div class="col-sm-3 col-xs-1"></div>
     </div>
   </div>
 
+  <!-- Password -->
   <div class="form-group">
-    <%= f.label :password, :class =>"col-sm-2 control-label" %>
-    <div class="col-sm-6">
-      <%= f.password_field :password,:required=>"required", :class =>"form-control"%>
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <%= f.label :password, :class =>"col-sm-6 col-xs-12 control-label" %>
+      <div class="col-sm-3 col-xs-1"></div>
+    </div>
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <div class="col-sm-6 col-xs-12">
+        <%= f.password_field :password,:required=>"required", :class =>"form-control"%>
+      </div>
+      <div class="col-sm-3 col-xs-1"></div>
     </div>
   </div>
 
+  <!-- Confirm Password -->
   <div class="form-group">
-    <%= f.label :password_confirmation, "Confirm Password", :class =>"col-sm-2 control-label" %>
-    <div class="col-sm-6">
-      <%= f.password_field :password_confirmation,:required=>"required", :class =>"form-control"%>
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <%= f.label :password_confirmation, :class =>"col-sm-6 col-xs-12 control-label" %>
+      <div class="col-sm-3 col-xs-1"></div>
+    </div>
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-3 col-xs-1"></div>
+      <div class="col-sm-6 col-xs-12">
+        <%= f.password_field :password_confirmation,:required=>"required", :class =>"form-control"%>
+      </div>
+      <div class="col-sm-3 col-xs-1"></div>
     </div>
   </div>
 
+  <!-- Create My Account Button -->
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-2">
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <div class="col-sm-5 col-xs-1"></div>
+    <div class="padding-side-30 col-sm-2 col-xs-12">
+      <%= f.submit "Save changes", class: "btn btn-large btn-custom" %>
     </div>
+    <div class="col-sm-5 col-xs-1"></div>
   </div>
 
   <% end %>
-
-  <%= gravatar_for @user %>
-  <a href="http://gravatar.com/emails">change</a>
 </div>

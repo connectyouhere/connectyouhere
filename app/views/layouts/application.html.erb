@@ -1,10 +1,41 @@
 <!DOCTYPE html>
+<!--
+ ________  ________  ________   ________   _______   ________ _________       
+|\   ____\|\   __  \|\   ___  \|\   ___  \|\  ___ \ |\   ____\\___   ___\     
+\ \  \___|\ \  \|\  \ \  \\ \  \ \  \\ \  \ \   __/|\ \  \___\|___ \  \_|     
+ \ \  \    \ \  \\\  \ \  \\ \  \ \  \\ \  \ \  \_|/_\ \  \       \ \  \      
+  \ \  \____\ \  \\\  \ \  \\ \  \ \  \\ \  \ \  \_|\ \ \  \____   \ \  \     
+   \ \_______\ \_______\ \__\\ \__\ \__\\ \__\ \_______\ \_______\  \ \__\    
+    \|_______|\|_______|\|__| \|__|\|__| \|__|\|_______|\|_______|   \|__|    
+                                                                              
+                                                                              
+                                                                              
+  ___    ___ ________  ___  ___                                               
+ |\  \  /  /|\   __  \|\  \|\  \                                              
+ \ \  \/  / | \  \|\  \ \  \\\  \                                             
+  \ \    / / \ \  \\\  \ \  \\\  \                                            
+   \/  /  /   \ \  \\\  \ \  \\\  \                                           
+ __/  / /      \ \_______\ \_______\                                          
+|\___/ /        \|_______|\|_______|                                          
+\|___|/                                                                       
+                                                                              
+                                                                              
+ ___  ___  _______   ________  _______                                        
+|\  \|\  \|\  ___ \ |\   __  \|\  ___ \                                       
+\ \  \\\  \ \   __/|\ \  \|\  \ \   __/|                                      
+ \ \   __  \ \  \    \ \   _  _\ \  \                                    
+  \ \  \ \  \ \  \__|\\ \  \\  \\ \  \___/\                                   
+   \ \__\ \__\ \_______\ \__\\ _\\ \_______\                                  
+    \|__|\|__|\|_______|\|__|\|__|\|_______|                                                                           
+
+-->
 <html>
 <head>
-  <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <%= favicon_link_tag 'favicon.ico' %>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700,900,100' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <%= favicon_link_tag "favicon.png" %>
   <meta name="keywords" content="<%= meta_keywords %>" /> 
-<meta name="description" content="<%= meta_description %>" />
+  <meta name="description" content="<%= meta_description %>" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="This is an example of a meta description. This will often show up in search results.">
   <meta property="og:title" content="<%= yield(:title).present? ? yield(:title) : 'ConnectYouHere' %>" />
@@ -31,13 +62,11 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
   <%= render 'layouts/header' %>
-  <div class="container">
-    <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
-    <%= debug(params) if Rails.env.development? %>
-  </div>
+  <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+  <%= debug(params) if Rails.env.development? %>
 </body>
 </html>

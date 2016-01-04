@@ -1,8 +1,9 @@
-
-<div class="row padt-10 ">
-  <%= link_to "Post an accomodation", new_accomodation_path, :class =>"btn btn-primary pull-right" %>
+<div class="section-header accommodation-background">
+	<h1>Available Accomodation</h1>
+	<%= link_to "Post an accommodation", new_accomodation_path, :class =>"btn btn-large btn-custom full-width-mobile" %>
+</div>
+<div class="row well" id="accommodation">
   <div class="col-md-12">
-    <h1>Available Accomodation</h1>
     <%= render @accomodations %>
   </div>
 </div>

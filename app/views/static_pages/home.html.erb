@@ -1,34 +1,57 @@
-<div class="row">
-
-	<div class="jumbotron home-bg visible-lg"><h3>ConnectYouHere provides various information such as <br/><B>job</B> and <B>accomodation</B> for international student and worker in Australia.</h3>
-<div class="col-md-offset-3 col-md-3 margintop10">
-      <%=link_to image_tag("JobsButton.png", class:"homebutton img-responsive"), jobs_path%>
-  </div>
-  <div class="col-md-3 margintop10">
-      <%=link_to image_tag("AccButton.png", class:"homebutton img-responsive"), accomodations_path %>
-  </div>
-  </div>
-  <div class="hidden-lg col-md-offset-3 col-md-3 margintop10">
-      <%=link_to image_tag("JobsButton.png", class:"homebutton img-responsive"), jobs_path%>
-  </div>
-  <div class="hidden-lg col-md-3 margintop10">
-      <%=link_to image_tag("AccButton.png", class:"homebutton img-responsive"), accomodations_path %>
-  </div>
-
+<div class="header" id="header">
+    <div class="content">
+	    <!--<h3>ConnectYouHere provides various information such as <br/><B>job</B> and <B>accomodation</B> for international student and worker in Australia.</h3>-->
+        <!--<div class="col-md-offset-3 col-md-3 margintop10">
+            <%=link_to image_tag("JobsButton.png", class:"homebutton img-responsive"), jobs_path%>
+        </div>
+        <div class="col-md-3 margintop10">
+            <%=link_to image_tag("AccButton.png", class:"homebutton img-responsive"), accomodations_path %>
+        </div>-->
+        <%=image_tag("LogoOnly.png", class:"cyh-logo")%>
+        <h1 class="title">ConnectYouHere provides various information such as <span>Jobs</span> and <span>Accommodation</span> for international student and worker in Australia.</h1>
+        <div class="nav-button">
+            <div class="col-sm-2"></div>
+ 			<a href="<%= jobs_path %>" class="job-button-wrap col-sm-4">
+ 				<div class="job-button">
+ 					<i class="fa fa-briefcase"></i>
+ 					 Jobs
+ 				</div>
+ 			</a>
+ 			<a href="<%= accomodations_path %>" class="accommodation-button-wrap col-sm-4">
+ 				<div class="accommodation-button">
+ 					<i class="fa fa-home"></i>
+ 					 Accommodation
+ 				</div>
+ 			</a>
+ 			<div class="col-sm-2"></div>
+ 		</div>
+    </div>
 </div>
-<h2> Latest Jobs</h2>
 
-<div class="row">
-  <div class="col-md-12">
-      <%= render @jobs %>
-      <%= link_to "More jobs >", jobs_path ,class:"btn btn-info btn-xs pull-right"%>
+<div class="second-content" id="latest-jobs">
+  <div class="content container">
+      <h1 class="title">Latest Jobs</h1>
+      <div class="latest-list container">
+        <%= render @jobs %>
+      </div>
+      <div class="nav-button">
+            <div class="col-sm-4"></div>
+ 			<a href="<%= jobs_path %>" class="job-button-wrap col-sm-4">
+ 				<div class="job-button">
+ 					<i class="fa fa-briefcase"></i>
+ 					 More Jobs
+ 				</div>
+ 			</a>
+ 			<div class="col-sm-4"></div>
+      </div>
   </div>
 </div>
-<br/>
+
+<!-- Google Script
 <div class="row well">
   <div class="col-md-5">
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- panjang -->
+panjang
 <ins class="adsbygoogle"
      style="display:inline-block;width:728px;height:90px"
      data-ad-client="ca-pub-3918400380111417"
@@ -38,7 +61,7 @@
 </script>
 </div>
 <div class="col-md-offset-2 col-md-5">
-<!-- panjang -->
+panjang
 <ins class="adsbygoogle"
      style="display:inline-block;width:550px;height:90px"
      data-ad-client="ca-pub-3918400380111417"
@@ -48,15 +71,43 @@
 </script>
 </div>
 </div>
+</div> -->
+
+<div class="third-content" id="social-media-share">
+    <div class="content container">
+        <h1 class="title">Share and like us on facebook!</h1>
+        <div class="social-media-button facebook">
+            <a href="http://facebook.com/connectyouhere" target="_blank">
+                <i class="fa fa-facebook"></i>
+            </a>
+        </div>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-like" data-href="https://www.facebook.com/ConnectYouHere/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+    </div>
 </div>
 
-
-<h2> Latest Accomodation</h2>
-
-<div class="row">
-  <div class="col-md-12">
-      <%= render @accomodations %>
-      <%= link_to "More accomodation >", accomodations_path ,class:"btn btn-info btn-xs pull-right"%>
-  </div>
-
-
+<div class="last-content" id="latest-accommodation">
+    <div class="content container">
+        <h1 class="title">Latest Accommodations</h1>
+        <div class="latest-list container">
+            <%= render @accomodations %>
+        </div>
+        <div class="nav-button">
+            <div class="col-sm-4"></div>
+ 			<a href="<%= accomodations_path %>" class="accommodation-button-wrap col-sm-4">
+ 				<div class="accommodation-button">
+ 					<i class="fa fa-home"></i>
+ 					 More Accommodation
+ 				</div>
+ 			</a>
+ 			<div class="col-sm-4"></div>
+ 		</div>
+    </div>
+</div>

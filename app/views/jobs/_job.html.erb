@@ -1,4 +1,5 @@
- <div class="col-md-4 no-padding">
+ 
+     <!--
  	<h4 class="job-category"><%= job.classification.name %></h4>
  	<a href="<%= job_path(job) %>">
  		<button class="job-button full-color">
@@ -20,6 +21,36 @@
  		<p class="bottom-right"><em><%= time_ago_in_words(job.created_at) %></em> ago</p>
  		</button>
  	</a>
-</div>
+ 	-->
+ 	
+ 	<a href="<%= job_path(job) %>" class="card-wrapper col-lg-4 col-md-6 col-sm-6 col-xs-12 no-padding-mobile">
+ 		<div class="card" id="job-card">
+ 			<h3 class="job-category">
+				<i class="fa fa-tags"></i>
+				<%= job.classification.name %>
+			</h3>
+ 			<h2 class="job-role">
+ 			    <%= job.role %>
+ 			</h2>
+ 			<p class="employer-name">
+ 			    <%= job.employer %>
+ 			</p>
+ 			<p class="job-type">
+ 			    <%= job.category %>
+ 			</p>
+ 			<hr class="line-separator"></hr>
+ 			<p class="job-description">
+ 			    <%= truncate( job.criteria, :length => 200, :separator => ' ') %>
+			</p>
+			<hr class="line-separator"></hr>
+ 			<p class="location">
+ 				<span class="glyphicon glyphicon-map-marker"></span>
+ 				<%= job.location %>
+ 			</p>
+ 			<p class="date">
+ 			    <%= time_ago_in_words(job.created_at) %> ago
+ 			</p>
+ 		</div>
+ 	</a>
 
 

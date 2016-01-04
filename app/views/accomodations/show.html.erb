@@ -1,111 +1,119 @@
 <% provide(:title, @accomodation.roomtype+" is available in "+@accomodation.location) %>
-<h1>Accomodation Details</h1>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@accomodation , :html => {:class => "form-horizontal"})  do |f| %>
-    <%= render 'shared/error_messages', object: f.object%>
-
-  <div class="form-group">
-      <%= f.label :roomtype, :class =>"col-sm-2 control-label" %>
-      <div class="col-sm-6">
-       <p class="form-control-static"><%= @accomodation.roomtype %> </p>
-     </div>
-   </div>
-
-    <div class="form-group">
-      <%= f.label :location, :class =>"col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <p class="form-control-static"><%= @accomodation.location %> </p>
-      </div>
+<div class="row well">
+  <div class="col-md-12 no-padding-mobile">
+    <div class="title-wrapper col-md-12">
+      <h1><span>Accomodation Details</span></h1>
     </div>
-
-    <div class="form-group">
-      <%= f.label :price, :class =>"col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <p class="form-control-static">$ <%= @accomodation.price %> / week</p>
-      </div>
-    </div>
-
-  <div class="form-group">
-      <%= f.label :bond, :class =>"col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <p class="form-control-static">$ <%= @accomodation.bond %> </p>
-      </div>
-    </div>
-    
-<div class="form-group">
-  <%= f.label :available, :class =>"col-sm-2 control-label" %>
-  <div class='input-group col-sm-5' id='datetimepicker5'>
-   <p class="form-control-static"><%= @accomodation.available.strftime("%d/%m/%Y") %></p>
- </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :smoking, :class =>"col-sm-2 control-label" %>
-  <div class="col-sm-6"> 
-    <p class="form-control-static">
-      <% if @accomodation.smoking %>
-      Yes
-      <% else %>
-      No
-      <% end %> 
-    </p>
   </div>
-</div>
+  
+  <!-- Left Side -->
+  <div class="col-md-8 no-padding-mobile no-padding-tablet">
+    <%= form_for(@accomodation , :html => {:class => "form-horizontal"})  do |f| %>
+      <%= render 'shared/error_messages', object: f.object%>
 
-   <div class="form-group">
-    <%= f.label :description, :class =>"col-sm-2 control-label" %>
-    <div class="col-sm-6">
-     <p class="form-control-static"><%= simple_format @accomodation.description %> </p>
-   </div>
- </div>
- <div class="form-group">
-      <%= f.label :contact_name,"Contact name", :class =>"col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <p class="form-control-static"><%= @accomodation.contact_name %> </p>
+      <div class="description-wrapper col-md-12">
+  
+        <div class="description-group">
+            <h3>Description</h3>
+            <p class="form-control-static"><%= simple_format @accomodation.description %></p>
+        </div>
+        
+        <div class="description-group">
+          <h3>Available</h3>
+          <div class='input-group' id='datetimepicker5'>
+           <p class="form-control-static"><%= @accomodation.available.strftime("%d/%m/%Y") %></p>
+         </div>
+        </div>
+  
+        <div class="description-group">
+          <h3>Smoking</h3>
+          <p class="form-control-static">
+            <% if @accomodation.smoking %>
+            Yes
+            <% else %>
+            No
+            <% end %> 
+          </p>
+        </div>
+        
+        <div class="description-group">
+            <h3>Contact Name</h3>
+            <p class="form-control-static"><%= @accomodation.contact_name %> </p>
+        </div>
+  
+        <div class="description-group">
+            <h3>Phone No.</h3>
+            <p class="form-control-static"><%= @accomodation.contact_phone %></p>
+        </div>
+  
+        <div class="description-group">
+          <h3>Photos</h3>
+          <p class="col-sm-4 no-padding-side form-control-static"><img src="<%= @accomodation.Imagelink1 %>" class="img-accomodation-show"></p>
+          <p class="col-sm-4 no-padding-side form-control-static"><img src="<%= @accomodation.Imagelink2 %>" class="img-accomodation-show"></p>
+          <p class="col-sm-4 no-padding-side form-control-static"><img src="<%= @accomodation.Imagelink3 %>" class="img-accomodation-show"></p>
+        </div>
+        
+        <% if current_user?(@accomodation.user) %>
+        <div class="description-group">
+          <div class="col-md-12 text-right">
+            
+            <%= link_to "Edit", edit_accomodation_path(@accomodation),:class=>"btn btn-edit"%>
+            <%= link_to "Delete", @accomodation, method: :delete,
+            data: { confirm: "Are you sure you want to remove this accomodation from the list?" },
+            title: "This cannot be undone", :class=>"btn btn-danger" %>
+            
+          </div>
+        </div>
+        <% end %>
       </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :contact_phone,"Contact number", :class =>"col-sm-2 control-label" %>
-      <div class="col-sm-6">
-        <p class="form-control-static"><%= @accomodation.contact_phone %></p>
-      </div>
-    </div>
-
-
-<div class="form-group">
-  <div class="col-sm-offset-2 col-sm-2">
-    <% if current_user?(@accomodation.user) %>
-    <%= link_to "Edit", edit_accomodation_path(@accomodation),:class=>"btn btn-primary"%>
-    <%= link_to "Delete", @accomodation, method: :delete,
-    data: { confirm: "Are you sure you want to remove this accomodation from the list?" },
-    title: "This cannot be undone", :class=>"btn btn-danger" %>
     <% end %>
   </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :contact_phone,"Photos", :class =>"col-sm-2 control-label" %>
-  <div class="col-offset-sm-2 col-sm-6">
-    <p><img src="<%= @accomodation.Imagelink1 %>" class="img-accomodation-show"></p>
-    <p><img src="<%= @accomodation.Imagelink2 %>" class="img-accomodation-show"></p>
-    <p><img src="<%= @accomodation.Imagelink3 %>" class="img-accomodation-show"></p>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :share, :class =>"col-sm-2 control-label" %>
-  <div class="col-sm-6">
-    <div class="social-likes" data-counters="no">
-      <div class="facebook" title="Share link on Facebook">Facebook</div>
-      <div class="twitter" data-via="ConnectYouHere" data-related="onnectYouHere provides various information such as job and accomodation for international student and worker in Australia." title="Share link on Twitter">Twitter</div>
-      <div class="plusone" title="Share link on Google+">Google+</div>
+  <!-- right side -->
+  <div class="col-md-4 no-padding-mobile no-padding-tablet">
+    <div class="description-wrapper col-md-12">
+        <div class="description-group">
+            <h3>Room Type</h3>
+            <p class="form-control-static"><%= @accomodation.roomtype %> </p>
+        </div>
+    
+        <div class="description-group">
+          <h3>Location</h3>
+          <p class="form-control-static"><%= @accomodation.location %> </p>
+        </div>
+    
+        <div class="description-group">
+          <h3>Price</h3>
+          <p class="form-control-static">$ <%= @accomodation.price %> / week</p>
+        </div>
+    
+        <div class="description-group">
+          <h3>Bond</h3>
+          <p class="form-control-static">$ <%= @accomodation.bond %> </p>
+        </div>
+    </div>
+    
+    <div class="description-wrapper col-md-12 form-group">
+      <div class="description-group accommodation-share col-md-12">
+        <h3>Share This Accommodation</h3>
+        <div class="social-likes" data-counters="no">
+          <div class="facebook" title="Share link on Facebook">Facebook</div>
+          <div class="twitter" data-via="ConnectYouHere" data-related="onnectYouHere provides various information such as job and accomodation for international student and worker in Australia." title="Share link on Twitter">Twitter</div>
+          <div class="plusone" title="Share link on Google+">Google+</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- ConnectYouHere -->
+        <ins class="adsbygoogle"
+         style="display:inline-block;width:300px;height:250px"
+         data-ad-client="ca-pub-3918400380111417"
+         data-ad-slot="7426534281"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
     </div>
   </div>
-</div>
-
-<% end %>
-</div>
 </div>

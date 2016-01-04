@@ -1,24 +1,49 @@
 <header class="navbar navbar-fixed-top navbar-inverse" role="banner">
   <div class=".navbar-container">
     <div class="navbar-header">
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+      <button class="navbar-toggle-custom mobile-visibility collapsed">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="https://connectuhere.herokuapp.com"><%= image_tag "Logo.png", id: "logo2" %></a><%= link_to "ConnectYouHere", root_path, class: "logo visible-lg-inline visible-md-inline" %>
+      <a href="https://connectuhere.herokuapp.com"><%= image_tag "Logo.png", id: "logo2" %></a>
     </div>
-    <nav style="height: 0.8px;" class="navbar-collapse bs-navbar-collapse collapse" role="navigation">
+    <nav class="navbar-collapse-custom height-custom" role="navigation">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Job", jobs_path %></li>
-       <li><%= link_to "Accomodation", accomodations_path %></li>
-       <li><%= link_to "Food - coming soon!", foods_path %></li>
-       <!-- <li><%= link_to "Visa", jobs_path %></li>
-       <li><%= link_to "Education", accomodations_path %></li> -->
-       
+        <li class="mobile-visibility close-icon"><i class="fa fa-times"></i></li>
+        <li class="mobile-visibility nav-title">Menu</li>
+        <% if current_page?(root_path) %>
+          <li class="active"><%= link_to "Home", root_path %></li>
+          
+        <% else %>
+          <li><%= link_to "Home", root_path %></li>
+          
+        <% end %>
+        
+        <% if current_page?(jobs_path) %>
+          <li class="active"><%= link_to "Job", jobs_path %></li>
+          
+        <% else %>
+          <li><%= link_to "Job", jobs_path %></li>
+          
+        <% end %>
+        
+        <% if current_page?(accomodations_path) %>
+          <li class="active"><%= link_to "Accomodation", accomodations_path %></li>
+          
+        <% else %>
+          <li><%= link_to "Accomodation", accomodations_path %></li>
+          
+        <% end %>
+        
+        <li><%= link_to "Food - coming soon!", foods_path %></li>
+        
+        <!-- <li><%= link_to "Visa", jobs_path %></li>
+        <li><%= link_to "Education", accomodations_path %></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li class="mobile-visibility nav-title">Account</li>
        <% if signed_in? %>
        <li id="fat-menu" class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -41,3 +66,30 @@
   </nav>
 </div>
 </header>
+
+<script>
+
+var menu_right_sidebar = function() {
+  $('.navbar-toggle-custom').click(function() {
+    $('body').addClass('hide-overflow');
+    $('#logo2').addClass('img-logo-right-pull');
+    $('#logo2').removeClass('img-logo-right-push');
+    $('.navbar-collapse-custom').addClass('nav-list-right-pull');
+    $('.navbar-inverse').addClass('nav-menu-right-pull');
+    $('.navbar-collapse-custom').removeClass('nav-list-right-push');
+    $('.navbar-inverse').removeClass('nav-menu-right-push');
+  });
+  
+  $('.close-icon').click(function() {
+    $('#logo2').addClass('img-logo-right-push');
+    $('.navbar-collapse-custom').addClass('nav-list-right-push');
+    $('.navbar-inverse').addClass('nav-menu-right-push');
+    $('.navbar-collapse-custom').removeClass('nav-list-right-pull');
+    $('.navbar-inverse').removeClass('nav-menu-right-pull');
+    $('#logo2').removeClass('img-logo-right-pull');
+    $('body').removeClass('hide-overflow');
+  });
+}
+
+$(document).ready(menu_right_sidebar);
+</script>

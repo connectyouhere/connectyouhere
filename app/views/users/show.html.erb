@@ -1,19 +1,37 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="span4">
-    <br/>
-    <section>
-      <h1>
+<div class="row well" id="user-profile">
+  <!-- Left side -->
+  <div class="col-md-3 no-padding-mobile">
+    <div class="user-profile-wrapper">
+      <div class="user-profile-img">
         <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-  <div class="span8">
-    <% if @user.jobs.any? %>
-    <h3>Jobs (<%= @user.jobs.count %>)</h3>
-    <%= render @jobs %>
-    <%= will_paginate @jobs %>
-    <% end %>
+      </div>
+      <div class="user-profile-content">
+        <h3><%= @user.name %></h3>
+        <p><%= @user.suburb %></p>
+      </div>
+    </div>
+  </div>
+  <!-- Right side -->
+  <div class="col-md-9 no-padding-mobile">
+    <div class="wrapper-with-title container">
+      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#jobUserContent" aria-expanded="true" aria-controls="jobUserContent">
+        <div class="panel-heading wrapper-header"><h4>
+          Job Posts (<%= @user.jobs.count %>)
+          <i class="fa fa-chevron-down"></i>
+          </h4>
+        </div>
+      </a>
+      <div id="jobUserContent" class="col-sm-12 panel-collapse col-sm-12 collapse in" role="tabpanel">
+        <div class="wrapper-container container">
+          <% if @user.jobs.any? %>
+            <%= render @jobs %>
+            <%= will_paginate @jobs %>
+          <% else%>
+            <p><%= @user.name %>, has not yet posted a job</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

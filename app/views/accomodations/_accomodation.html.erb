@@ -1,27 +1,31 @@
- <div class="col-md-4 no-padding">
- 	<a href="<%= accomodation_path(accomodation) %>">
- 		<button class="accomodation-button accomodation-color">
- 		<% if accomodation.Imagelink1 == "" %>
- 			<%= image_tag "AccComing.jpg", class: "main-acc-pic" %>
- 		<% else %>
- 			<img src="<%= accomodation.Imagelink1 %>" class="main-acc-pic">
- 		<% end %>
- 		<% if accomodation.roomtype == "Own room" %>
- 		<img alt="Own Room" class="top-left img-small" src="/assets/OwnRoomIcon.png">
- 		<% else %>
- 		<img alt="Share room" class="top-left img-small" src="/assets/ShareRoomIcon.png">
- 		<% end %>
- 		
-
- 		<span class="price"><sup>$</sup> <b><%= accomodation.price %></b>
- 		<span class="price-tag"><b>AUD</b><sup>/weeks<sup></span></span>
- 		<p class="absolute"><%= truncate( accomodation.description, :length => 150, :separator => ' ') %></p>
-
- 		<p class="bottom-left"><span class="glyphicon glyphicon-map-marker"></span> <%= accomodation.location %></p>
- 		<p class="bottom-right"><em><%= time_ago_in_words(accomodation.created_at) %></em> ago</p>
- 		</button>
+ 
+ 	<a href="<%= accomodation_path(accomodation) %>" class="card-wrapper col-lg-4 col-md-6 col-sm-6 col-xs-12 no-padding-mobile">
+ 		<div class="card" id="accommodation-card">
+ 		    <div class="accommodation-img" style="background-image:url(
+     		    <% if accomodation.Imagelink1.nil? %>
+         			<%= asset_path 'AccComing.jpg' %>
+         		<% else %>
+         			<%= accomodation.Imagelink1 %>
+         		<% end %>)">
+     		</div>
+     		<div class="content">
+ 		        <h2 class="accommodation-type">
+             		<% if accomodation.roomtype == "Own room" %>
+             		    <i class="fa fa-user"></i>
+             		    Own Room
+             		<% else %>
+             		    <i class="fa fa-users"></i>
+             		    Share Room
+             		<% end %>
+         		</h2>
+         		<p class="accommodation-price">$ <%= accomodation.price %> AUD <sup>/weeks<sup></p>
+         		<hr class="line-separator"></hr>
+         		<p class="accommodation-description"><%= truncate( accomodation.description, :length => 150, :separator => ' ') %></p>
+                <hr class="line-separator"></hr>
+         		<p class="location"><span class="glyphicon glyphicon-map-marker"></span> <%= accomodation.location %></p>
+         		<p class="date"><em><%= time_ago_in_words(accomodation.created_at) %></em> ago</p>
+     		</div>
+ 		</div>
  	</a>
-
-</div>
 
 

@@ -1,28 +1,52 @@
 <% provide(:title, "Sign in") %>
-<h1>Sign in</h1>
 
-<div class="row">
+<div class="row header-bg-image">
   <%= form_for(:session, url: sessions_path , :html => {:class => "form-horizontal"}) do |f| %>
+  <div class="img-logo force-text-centre">
+    <%=image_tag("LogoOnly.png", class:"cyh-logo")%>
+  </div>
   <div class="form-group">
-    <%= f.label :email, :class =>"col-sm-2 control-label" %>
-    <div class="col-sm-6">
-      <%= f.text_field :email,:required=>"required", :class =>"form-control"%>
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-4 col-xs-1"></div>
+      <%= f.label :email, :class =>"col-sm-4 col-xs-12 control-label" %>
+      <div class="col-sm-4 col-xs-1"></div>
+    </div>
+    
+    <div class="col-xs-12 dark-background form-input">
+      <div class="col-sm-4 col-xs-1"></div>
+      <div class="col-sm-4 col-xs-12">
+        <%= f.text_field :email,:required=>"required", :class =>"form-control"%>
+      </div>
+      <div class="col-sm-4 col-xs-1"></div>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :password, :class =>"col-sm-2 control-label" %>
-    <div class="col-sm-6">
-      <%= f.password_field :password,:required=>"required", :class =>"form-control"%>
+    
+    <div class="col-xs-12 dark-background title-form">
+      <div class="col-sm-4 col-xs-1"></div>
+      <%= f.label :password, :class =>"col-sm-4 col-xs-12 control-label" %>
+      <div class="col-sm-4 col-xs-1"></div>
+    </div>
+    
+    <div class="col-xs-12 dark-background form-input">
+      <div class="col-sm-4 col-xs-1"></div>
+      <div class="col-sm-4 col-xs-12">
+        <%= f.password_field :password,:required=>"required", :class =>"form-control"%>
+      </div>
+      <div class="col-sm-4 col-xs-1"></div>
     </div>
   </div>
+  
+  <p class="margin-bottom-30 dark-background force-text-centre">New user? <span><%= link_to "Sign up now!", signup_path %></span></p>
+  
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-2">
-      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <div class="col-sm-5 col-xs-1"></div>
+    <div class="padding-side-30 col-sm-2 col-xs-12">
+      <%= f.submit "Sign In", class: "btn btn-custom btn-large" %>
     </div>
+    <div class="col-sm-5 col-xs-1"></div>
   </div>
 
   <% end %>
-
-  <p>New user? <%= link_to "Sign up now!", signup_path %></p>
 </div>
