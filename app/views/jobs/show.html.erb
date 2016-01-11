@@ -3,8 +3,21 @@
 <div class="row well">
   <div class="col-md-12 no-padding-mobile">
     <div class="title-wrapper col-md-12">
-      <h1><span><%= @job.role %> - <%= @job.employer %></span></h1>
+      <h1 class="text-center"><span><%= @job.role %> - <%= @job.employer %></span></h1>
+      <div class="col-md-12 subtitle-wrapper">
+        <p class="inline-display form-control-static"><%= @job.category %></p>
+        <p class="inline-display">|</p>
+        <p class="inline-display form-control-static"><%= @job.location %></p>
+        <p class="inline-display">|</p>
+        <p class="inline-display form-control-static">
+            <% if !@job.salary.nil? %>
+            $<%= @job.salary %> 
+            <% end %> 
+            <%= @job.salary_type %> 
+          </p>
+      </div>
     </div>
+    
   </div>
   <!-- left side -->
   <div class="col-md-8 no-padding-mobile no-padding-tablet">
@@ -12,8 +25,6 @@
       <%= render 'shared/error_messages', object: f.object%>
       
       <div class="description-wrapper col-md-12">
-        
-    
         <div class="description-group">
           <h3>Description</h3>
           <p class="form-control-static"><%= simple_format @job.description %> </p>
@@ -22,28 +33,6 @@
        <div class="description-group">
           <h3>Criteria</h3>
           <p class="form-control-static"><%= simple_format @job.criteria %> </p>
-        </div>
-    
-        <div class="description-group">
-          <h3>Category</h3>
-          <p class="form-control-static"><%= @job.category %> </p>
-        </div>
-    
-        <div class="description-group">
-          <h3>Salary</h3>
-          <p class="form-control-static">
-            <% if !@job.salary.nil? %>
-            $<%= @job.salary %> 
-            <% end %> 
-            <%= @job.salary_type %> 
-          </p>
-        </div>
-    
-        <div class="description-group">
-          <h3>Closed Date</h3>
-          <div id='datetimepicker5'>
-            <p class="form-control-static"><%= @job.closed_date.strftime("%d/%m/%Y") %></p>
-          </div>
         </div>
     
         <div class="description-group">
@@ -78,10 +67,12 @@
           <h3>Employer</h3>
           <p class="form-control-static"><%= @job.employer %> </p>
         </div>
-    
+        
         <div class="description-group">
-          <h3>Location</h3>
-          <p class="form-control-static"><%= @job.location %> </p>
+          <h3>Closed Date</h3>
+          <div id='datetimepicker5'>
+            <p class="form-control-static"><%= @job.closed_date.strftime("%d/%m/%Y") %></p>
+          </div>
         </div>
     
         <div class="description-group">
